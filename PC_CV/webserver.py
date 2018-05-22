@@ -8,7 +8,7 @@ from bottle import route, run, request, post, view
 from . import config
 from . import logic
 
-from .vision.google_api impor Google_API
+from .vision.google_api import Google_API
 
 
 @route('/')
@@ -31,11 +31,11 @@ def result():
 
     #TODO: your logic (modularize it to easy debug)
     tags_raw = g_client.annotate(imgbytes)
-    img_png, tags = logic.mylogic(imgbytes)
+    img_png, topic = logic.my_logic(imgbytes, tags_raw)
 
     return {
-        "image": b"data:image/png;base64,"+base64.b64encode(img_png),
-        "tages": tags
+        "image_grayscale": b"data:image/png;base64,"+base64.b64encode(img_png),
+        "topic": topic
     }
 
 
