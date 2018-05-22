@@ -5,8 +5,10 @@ import bottle
 from bottle import route, run, request, post, view
 
 
-
 from . import config
+from . import logic
+
+from .vision.google_api impor Google_API
 
 
 @route('/')
@@ -18,22 +20,31 @@ def capture():
 @route('/image', method='POST')
 @view('result')
 def result():
-    imageb64 = request.forms.get("image")
-    if imageb64.startswith('data:'):  # data:image/png;base64,iVB
-        imageb64 = imageb64[imageb64.find(',')+1 : ]
-    img = base64.b64decode(imageb64)
+    imgb64 = request.forms.get("image")
+    if imgb64.startswith('data:'):  # data:image/png;base64,iVB
+        imgb64 = imgb64[imgb64.find(',')+1 : ]
+    imgbytes = base64.b64decode(imgb64)
 
-    # Debug
+    # Debug, write to disk
     # with open('test.png', 'wb') as f:
-        # f.write(img)
+        # f.write(imgbytes)
+
+    #TODO: your logic (modularize it to easy debug)
+    tags_raw = g_client.annotate(imgbytes)
+    img_png, tags = logic.mylogic(imgbytes)
 
     return {
-        "image": b"data:image/png;base64,"+base64.b64encode(img)
+        "image": b"data:image/png;base64,"+base64.b64encode(img_png),
+        "tages": tags
     }
 
 
 
 if __name__=="__main__":
+    #TODO: create clients you will need
+    g_client = Google_API(config.GOOGLE_KEY)
+
+    # Webserver
     bottle.TEMPLATE_PATH = [config.BOTTLE_PATH_VIEWS]
     bottle.BaseRequest.MEMFILE_MAX = config.BOTTLE_MAX_BYTES_BODY
     run(host=config.BOTTLE_HOST, port=config.BOTTLE_PORT)
