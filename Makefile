@@ -48,7 +48,7 @@ install: ## Create a development environment (virtualenv).
 	# Link code to project library so it is in the PYTHONPATH
 	@ln -s $(PATH_LIBRARY) $(PATH_VENV)'/lib/python$(PYTHON_VERSION)/site-packages/'
 	# Local configuration
-	@cp $(PATH_LIBRARY)/config.py (PATH_LIBRARY)/config_local.py
+	@cp $(PATH_LIBRARY)/config.py $(PATH_LIBRARY)/config_local.py
 	# Data directory
 	@echo "Done"
 

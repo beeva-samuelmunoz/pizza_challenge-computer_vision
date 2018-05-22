@@ -5,6 +5,7 @@
 ### Requirements ###
 * git
 * python 3.5
+* virtualenv
 * make
 
 ### Install ###
