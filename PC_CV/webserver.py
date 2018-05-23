@@ -27,16 +27,8 @@ def result():
         imgb64 = imgb64[imgb64.find(',')+1 : ]
     imgbytes = base64.b64decode(imgb64)
 
-    # Debug, write to disk
-    filename = '/tmp/{}.png'.format(uuid.uuid1())
-    print(filename)
-    with open(filename, 'wb') as f:
-        f.write(imgbytes)
 
-    #TODO: your logic (modularize it to easy debug)
-    #tags_raw = g_client.annotate(imgbytes)
-    faces_raw = az_client.face_detect(filename)
-    img_png, topic = logic.my_logic(imgbytes, None, faces_raw=faces_raw)
+    img_png, topic = logic.my_logic(imgbytes, az_face_client, g_annotation_client)
     #img_png, topic = logic.my_logic(imgbytes, tags_raw)
 
     return {
@@ -48,8 +40,8 @@ def result():
 
 if __name__=="__main__":
     #TODO: create clients you will need
-    g_client = Google_API(config.GOOGLE_KEY)
-    az_client = Azure_API(config.AZURE_KEY)
+    g_annotation_client = Google_API(config.GOOGLE_KEY)
+    az_face_client = Azure_API(config.AZURE_KEY)
 
     # Webserver
     bottle.TEMPLATE_PATH = [config.BOTTLE_PATH_VIEWS]
