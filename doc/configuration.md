@@ -23,3 +23,6 @@ Copy the token into the variable `GOOGLE_KEY`in `config_local.py`.
 
 ### Credentials for Azure Cognitive Face API
 Ask for your API key and copy into the variable `AZURE_KEY` in `config_local.py`
+
+### Run!
+Now you can [run](running.md) successfully your web demo
