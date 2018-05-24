@@ -8,10 +8,16 @@ from .vision.azure_api import Azure_API
 import uuid
 
 
-def process_face(faces_raw):
-    topic = "face"
-
-    return topic
+def crop_and_transpose_face(img, rect):
+    left = rect['left']
+    top = rect['top']
+    width = rect['width']
+    height = rect['height']
+    box = (left, top, left +width, top + height)
+    ic = img.crop(box)
+    ic = ic.transpose(Image.ROTATE_180)
+    img.paste(ic, box)
+    return img
 
 def my_logic(imgbytes, az_face_client, g_annotation_client):
     """Give an image, some annotations and return what you need in the template
@@ -30,29 +36,14 @@ def my_logic(imgbytes, az_face_client, g_annotation_client):
     faces_raw = az_face_client.face_detect(filename)
 
     if (faces_raw and faces_raw[0]['faceRectangle']):
-        topic = process_face(faces_raw)
+        topic = "face"
         rect = faces_raw[0]['faceRectangle']
-
-        left = rect['left']
-        top = rect['top']
-        width = rect['width']
-        height = rect['height']
-        box = (left, top, left +width, top + height)
-        ic = imgpil.crop(box)
-
-        ic = ic.transpose(Image.ROTATE_180)
+        imgpil = crop_and_transpose_face(imgpil, rect)
         #ic = ic.filter(ImageFilter.BLUR)
-
-        imgpil.paste(ic, box)
-
     else:
         tags_raw = g_annotation_client.annotate(imgbytes)
         topic = tags_raw[0].description if tags_raw else "nothing"
-
-
-
-    #TODO: your logic!
-    imgpil = imgpil.convert("L")  # image to grayscale
+        imgpil = imgpil.convert("L")  # image to grayscale
 
     # Pillow image to PNG bytearray
     imgbuffer = io.BytesIO()
