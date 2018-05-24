@@ -10,6 +10,6 @@
 
 <h3>This is your processed image</h3>
 <img src="{{ image_grayscale }}" />
-
+<button id="btn_submit" onclick="window.location.href='/'">Back home</button>
 </body>
 </html>
