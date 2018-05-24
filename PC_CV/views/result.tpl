@@ -8,7 +8,7 @@
 <h1>Pizza Challenge - Computer Vision</h1>
 <h2>I see a {{ topic }}!</h2>
 
-<h3>This is your image in grayscale</h3>
+<h3>This is your processed image</h3>
 <img src="{{ image_grayscale }}" />
 
 </body>
