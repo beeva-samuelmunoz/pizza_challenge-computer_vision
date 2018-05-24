@@ -26,4 +26,4 @@ And that's it!
 make run-webserver
 ```
 
-And if you go to http://localhost:8080 you should see a web. But it won't work (fow now :P ).
+And if you go to http://localhost:8080 you should see a web. But it won't work (fow now :P ). You need first to [configure](configuration.md) API credentials.
