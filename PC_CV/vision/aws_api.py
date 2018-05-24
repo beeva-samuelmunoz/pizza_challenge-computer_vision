@@ -8,9 +8,8 @@ http://boto3.readthedocs.io/en/latest/reference/services/rekognition.html
 class AWS_API:
 
     def __init__(self, key_id, key):
-        self.client = boto3.client('rekognition')
-        client = boto3.client(
-            's3',
+        self.client = boto3.client(
+            'rekognition',
             # Hard coded strings as credentials, not recommended.
             aws_access_key_id=key_id,
             aws_secret_access_key=key
@@ -18,20 +17,10 @@ class AWS_API:
 
 
     def detect_text(self, imgbytes):
-        """Annotate an image from 2 sources, choose one.
-        imgbytes: image bytes
-        url: public url of the image
+        """Identify text in the image
         """
-        self.client.detect_text(Image={'Bytes': imgbytes})
-
-
-        image = types.Image(content=imgbytes, source=url)
-        # Functions available:
-
-        ### TODO: put your logic here. Example:
-        response = self.client.label_detection(image=image)  # Label detection
-
-        return(response.label_annotations)
+        response = self.client.detect_text(Image={'Bytes': imgbytes})
+        return(response)
 
 
 # Test annotations
