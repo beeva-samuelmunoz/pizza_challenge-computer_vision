@@ -9,7 +9,9 @@ BOTTLE_MAX_BYTES_BODY = 10*(2**20)  # 10MB max file
 
 
 # API secrets not in commited files! -> config_local.py
-GOOGLE_KEY = "access token"
+GOOGLE_KEY = "replace with key"
+AZURE_KEY = "replace with key"
+
 
 
 try:
