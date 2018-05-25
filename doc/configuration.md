@@ -32,11 +32,11 @@ Copy the token into the variable `GOOGLE_KEY`in `config_local.py`.
 
 ### Credentials for Azure Cognitive Face API
 Generate API key via https://azure.microsoft.com/es-es/try/cognitive-services/?api=face-api
-Copy the key into the variable `AZURE_KEY` in `config_local.py`
+Copy the key into the variable `AZURE_KEY` and the url into the variable `AZURE_URL` in `config_local.py`.
 
 ### Credentials for Amazon Rekognition
-Ask for your temporary access key and secret key. 
-Copy into the variables AWS_KEY and AWS_KEY_ID
+Ask for your temporary access key and secret key.
+Copy into the corresponding variables `AWS_KEY_ID` and `AWS_KEY` in `config_local.py`.
 
 ### Run!
 Now you can [run](running.md) successfully your web demo
