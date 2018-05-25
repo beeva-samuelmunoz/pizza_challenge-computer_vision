@@ -36,7 +36,7 @@ Copy the key into the variable `AZURE_KEY` in `config_local.py`
 
 ### Credentials for Amazon Rekognition
 Ask for your temporary access key and secret key. 
-Copy into the variables AWS_KEY and AWS_KEY_ID
+Copy into the corresponding variables `AWS_KEY_ID` and `AWS_KEY`
 
 ### Run!
 Now you can [run](running.md) successfully your web demo
