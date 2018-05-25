@@ -3,6 +3,9 @@ import boto3
 """
 For a complete list of AWS Rekognition features, visit:
 http://boto3.readthedocs.io/en/latest/reference/services/rekognition.html
+
+JSON return format:
+https://docs.aws.amazon.com/rekognition/latest/dg/text-detection.html
 """
 
 class AWS_API:
