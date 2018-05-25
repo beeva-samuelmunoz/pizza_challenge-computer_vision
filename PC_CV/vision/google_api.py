@@ -19,9 +19,13 @@ class Google_API:
         # Functions available: https://google-cloud-python.readthedocs.io/en/latest/vision/gapic/v1/api.html
 
         ### TODO: put your logic here. Example:
-        response = self.client.label_detection(image=image)  # Label detection
+        try:
+            response = self.client.label_detection(image=image).label_annotations  # Label detection
+        except Exception as e:
+            print(e.message)
+            response = []
 
-        return(response.label_annotations)
+        return(response)
 
 
 # Test annotations
