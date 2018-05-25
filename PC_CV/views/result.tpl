@@ -97,10 +97,10 @@
 		<div class="result-box">
 			<!-- Tell me what you see!! -->
 			% if topic=="nothing":
-				<span>I can't see anything. I'm blind!</span>
+				<h3>I can't see anything. I'm blind!</h3>
 			% end
 			% if topic!="nothing":
-				<span>I see a <b>{{ topic }}</b></span>
+				<h3>I see a <b>{{ topic }}</b></h3>
 			% end
 		</div>
 
