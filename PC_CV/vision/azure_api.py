@@ -4,13 +4,10 @@ import cognitive_face as CF
 class Azure_API:
 
     def __init__(self, access_token):
-
         BASE_URL = 'https://westeurope.api.cognitive.microsoft.com/face/v1.0'
         CF.BaseUrl.set(BASE_URL)
         CF.Key.set(access_token)
-        
         self.client=CF
-        self.client_face=CF.face
 
 
     def face_detect(self, url=None):
