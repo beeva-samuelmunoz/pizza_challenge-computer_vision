@@ -40,7 +40,7 @@ def result():
 if __name__=="__main__":
     #Clients you will need
     g_client = Google_API(config.GOOGLE_KEY)
-    az_client = Azure_API(config.AZURE_KEY)
+    az_client = Azure_API(config.AZURE_KEY, config.AZURE_URL)
     aws_client = AWS_API(key_id=config.AWS_KEY_ID, key=config.AWS_KEY)
 
     # Webserver
